@@ -16,5 +16,10 @@
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "autoprefixer": "^9.8.0",
+    "tailwindcss": "^1.4.6"
   }
 }
