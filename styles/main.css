@@ -3,4 +3,43 @@
 @tailwind components;
 /* purgecss end ignore */
 
+a:not([class*=link]) {
+    @apply font-semibold;
+    text-decoration-skip-ink: auto;
+
+    &:hover {
+        @apply underline;
+        text-decoration-color: #667eea;
+    }
+}
+
+.stack {
+    --space: 1.5rem;
+
+    > * + * {
+        margin-top: var(--space);
+    }
+}
+
+.stack-x {
+    --space: 1.5rem;
+
+    > * + *:not([class*=ml]) {
+        margin-left: var(--space);
+    }
+}
+
+.stack-sm {
+    --space: .75rem;
+}
+
+.stack-xs {
+    --space: .25rem;
+}
+
+.skeleton {
+    height: 1em;
+    @apply w-full rounded-sm bg-gray-500;
+}
+
 @tailwind utilities;
