@@ -5,6 +5,7 @@ import useSearch from 'hooks/useSearch'
 import Pager from 'components/Pager'
 import SearchBar from 'components/SearchBar'
 import UserSearchResult from 'components/UserSearchResult'
+import UserSearchPlaceholder from 'components/UserSearchPlaceholder'
 
 const SearchResults = () => {
     const router = useRouter();
@@ -34,7 +35,7 @@ const SearchResults = () => {
                 <Pager query={query} pageInfo={data && data.search.pageInfo}/>
             </div>
             <ul className="list-none stack">
-                {users.map(user => (<UserSearchResult key={user.id} placeholder={fetching || !user.login} {...user}/>))}
+                {users.map(user => (fetching || !user.login ? <UserSearchPlaceholder /> : <UserSearchResult key={user.id} {...user}/>))}
             </ul>
             <Pager className="mt-4" query={query} pageInfo={data && data.search.pageInfo}/>
         </section>
