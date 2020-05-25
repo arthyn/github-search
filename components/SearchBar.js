@@ -19,10 +19,10 @@ const SearchBar = ({ className, query, onSearch }) => {
         <form className={className} onSubmit={searchHandler}>
             <label htmlFor={id} className="block mb-1 ml-2 text-sm uppercase tracking-wider font-bold">Search Github Users</label>
             <div className="flex items-stretch rounded-md shadow-md">
-                <input id={id} className="flex-1 p-2 leading-none text-2xl rounded-md rounded-r-none" type="text" placeholder="search" value={queryValue} onChange={(event) => setQueryValue(event.target.value)} />
+                <input id={id} className="flex-auto min-w-0 p-2 leading-none text-lg sm:text-2xl rounded-md rounded-r-none" type="text" placeholder="search" value={queryValue} onChange={(event) => setQueryValue(event.target.value)} />
                 <button className="inline-flex items-center px-3 py-2 text-sm uppercase tracking-wider font-bold text-white rounded-md rounded-l-none bg-gray-800 hover:bg-indigo-600 transition-colors duration-200">
                     <FontAwesomeIcon className="w-4 mr-1" icon={faSearch} />
-                    <span>Search</span>
+                    <span className="sr-only sm:not-sr-only">Search</span>
                 </button>
             </div>
         </form>

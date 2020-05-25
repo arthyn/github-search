@@ -3,6 +3,10 @@
 @tailwind components;
 /* purgecss end ignore */
 
+body {
+    @apply min-h-screen w-full text-lg text-gray-800 bg-yellow-500;
+}
+
 a:not([class*=link]) {
     @apply font-semibold;
     text-decoration-skip-ink: auto;

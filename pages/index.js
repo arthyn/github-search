@@ -25,7 +25,7 @@ export default function Home() {
 	}, [routing, searchEl])
 
 	return (
-		<section className="flex flex-col justify-center w-full max-w-4xl py-12 px-4 sm:px-6">
+		<section className="flex flex-col justify-center w-full max-w-2xl py-12 px-4 sm:px-6">
 			<Head>
 				<title>Github User Search</title>
 				<link rel="icon" href="/favicon.ico" />
