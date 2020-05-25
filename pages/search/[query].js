@@ -9,9 +9,7 @@ import UserSearchResult from 'components/UserSearchResult'
 const SearchResults = () => {
     const router = useRouter();
     const { query } = router.query;
-    console.log('component', router.query)
     const { data, fetching, error } = useSearch(router.query);
-    console.log('data', data)
     const users = data 
         ? data.search.edges.map(edge => edge.node) 
         : new Array(10).fill(null).map(() => ({ id: uuid() }));

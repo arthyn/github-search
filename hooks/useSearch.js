@@ -26,10 +26,8 @@ function getSearchQueryVariables({ query, before, after }) {
 function useSearch(routerQuery) {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-    console.log('hook', routerQuery)
 
     useEffect(() => {
-        console.log('effect', routerQuery)
         if (!routerQuery.query)
             return
 
