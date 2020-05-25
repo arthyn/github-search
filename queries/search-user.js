@@ -1,5 +1,5 @@
 const userSearchQuery = `
-    query ($query: String!, $first: Int, $last: Int, $before: String, $after: String) {
+    query search ($query: String!, $first: Int, $last: Int, $before: String, $after: String) {
         search(query: $query, type: USER, first: $first, last: $last, before: $before, after: $after) {
             edges {
                 cursor

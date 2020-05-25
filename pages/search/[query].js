@@ -1,52 +1,38 @@
+import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useQuery } from 'urql'
 import { v4 as uuid } from 'uuid'
-import userSearchQuery from 'queries/search-user'
+import useSearch from 'hooks/useSearch'
 import Pager from 'components/Pager'
+import SearchBar from 'components/SearchBar'
 import UserSearchResult from 'components/UserSearchResult'
-
-const resultLimit = 10;
-
-function getSearchQueryVariables({ query, before, after }) {
-    if (before)
-        return {
-            query,
-            last: resultLimit,
-            before
-        }
-    
-    if (after)
-        return {
-            query,
-            first: resultLimit,
-            after
-        }
-
-    return { 
-        query,
-        first: resultLimit
-    };
-}
 
 const SearchResults = () => {
     const router = useRouter();
     const { query } = router.query;
-    const [{ data, fetching, error }] = useQuery({
-        query: userSearchQuery,
-        variables: getSearchQueryVariables(router.query)
-    });
-
+    console.log('component', router.query)
+    const { data, fetching, error } = useSearch(router.query);
+    console.log('data', data)
     const users = data 
         ? data.search.edges.map(edge => edge.node) 
         : new Array(10).fill(null).map(() => ({ id: uuid() }));
 
     if (error)
-        return <h1 className="text-4xl">We couldn’t find any users matching '{query}'</h1>
+        return (
+            <section className="w-full max-w-4xl py-12 px-4 sm:px-8">
+                <SearchBar query={query} />
+                <h1 className="text-4xl">We couldn’t find any users matching '{query}'</h1>
+            </section>
+        );
 
     return (
-        <section className="w-full max-w-4xl py-12 px-8">
-            <div className="flex justify-between items-end mb-4">
-                <h1 className="text-4xl">{data ? data.search.userCount + ' users' : 'Users'} matching <strong>'{query}'</strong></h1>
+        <section className="w-full max-w-4xl py-12 px-4 sm:px-8">
+            <Head>
+				<title>{query} | Github User Search</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+            <SearchBar query={query} onSearch={(queryValue) => router.push('/search/[query]', `/search/${queryValue}`)}/>
+            <div className="flex justify-between items-end mb-4 my-12">
+                <h1 className="text-2xl md:text-4xl ml-2">{data ? data.search.userCount + ' users' : 'Users'} matching <strong>'{query}'</strong></h1>
                 <Pager query={query} pageInfo={data && data.search.pageInfo}/>
             </div>
             <ul className="list-none stack">

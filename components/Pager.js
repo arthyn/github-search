@@ -15,16 +15,16 @@ const Pager = ({ className, query, pageInfo }) => {
             {before && 
                 <Link href={`/search/[query]${before}`} as={`/search/${query}${before}`}>
                     <a className="inline-flex items-center">
-                        <FontAwesomeIcon className="text-base" icon={faAngleLeft} />
-                        <span className="text-sm uppercase font-semibold ml-1">Previous</span>
+                        <FontAwesomeIcon className="w-2" icon={faAngleLeft} />
+                        <span className="text-sm uppercase tracking-wider font-semibold ml-1">Previous</span>
                     </a>
                 </Link>
             }
             {after && 
                 <Link href={`/search/[query]${after}`} as={`/search/${query}${after}`}>
                     <a className="inline-flex items-center ml-4">
-                        <span className="text-sm uppercase font-semibold mr-1">Next</span>
-                        <FontAwesomeIcon className="text-base" icon={faAngleRight} />
+                        <span className="text-sm uppercase tracking-wider font-semibold mr-1">Next</span>
+                        <FontAwesomeIcon className="w-2" icon={faAngleRight} />
                     </a>
                 </Link>
             }
